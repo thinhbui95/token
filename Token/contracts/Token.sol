@@ -39,8 +39,8 @@ contract Token is ERC20, Ownable{
             uint256 txBuy = amount * txBuyPercent / ZOOM;
             super._transfer(from, feeWallet,txBuy);
             uint256 newAmount = amount - txBuy;
-            require(newAmount <= totalSupply() * 10 / ZOOM, "Can not swap exceed 2% totalSupply");
-            require(balanceOf(to) + newAmount <= totalSupply()* 10 / ZOOM, "BalanceOf does exceed 2% totalSupply");
+            require(newAmount <= totalSupply() * 200 / ZOOM, "Can not swap exceed 2% totalSupply");
+            require(balanceOf(to) + newAmount <= totalSupply()* 200 / ZOOM, "BalanceOf does exceed 2% totalSupply");
             super._transfer(from, to, newAmount);
         } else {
             super._transfer(from, to , amount);
