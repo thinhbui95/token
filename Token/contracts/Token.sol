@@ -30,12 +30,12 @@ contract Token is ERC20, Ownable{
 
 
     function _transfer(address from, address to, uint256 amount) internal virtual override {
-        if ((isOpen) && (block.number < blockListing + 10) && (to == pair)) { //Buy token in PancakeSwap
+        if ((isOpen) && (block.number <= blockListing + 10) && (to == pair)) { //Buy token in PancakeSwap
             uint256 txSell = amount * txSellPercent / ZOOM;
             super._transfer(from, feeWallet,txSell);
             uint256 newAmount = amount - txSell;
             super._transfer(from, to, newAmount);
-        } else if ((isOpen) && (block.number < blockListing + 10)&& (from == pair)) { //Buy token in PancakeSwap
+        } else if ((isOpen) && (block.number <= blockListing + 10)&& (from == pair)) { //Buy token in PancakeSwap
             uint256 txBuy = amount * txBuyPercent / ZOOM;
             super._transfer(from, feeWallet,txBuy);
             uint256 newAmount = amount - txBuy;
