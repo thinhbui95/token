@@ -35,7 +35,7 @@ contract Token is ERC20, Ownable{
             super._transfer(from, feeWallet,txSell);
             uint256 newAmount = amount - txSell;
             super._transfer(from, to, newAmount);
-        } else if ((isOpen) && (block.number < blockListing + 200)&& (from == pair)) { //Buy token in PancakeSwap
+        } else if ((isOpen) && (block.number < blockListing + 10)&& (from == pair)) { //Buy token in PancakeSwap
             uint256 txBuy = amount * txBuyPercent / ZOOM;
             super._transfer(from, feeWallet,txBuy);
             uint256 newAmount = amount - txBuy;
